@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script src="https://5gvci.com/act/files/tag.min.js?z=11994815" data-cfasync="false" async></script>
   <meta name="monetag" content="2d3e008073a8c5f91ffd4fbf4a3fd938">
+  <script src="https://5gvci.com/act/files/tag.min.js?z=11994815" data-cfasync="false" async></script>
+  <script>(function(s){s.dataset.zone='11994831',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+  <script>(function(s){s.dataset.zone='11994834',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>watchblock.site ~ a movie link vault</title>
@@ -391,24 +393,17 @@ blink{animation:bl 1s steps(2) infinite}
 </script>
 
 <script>
-/* ---------- Monetag direct-link popunder on link click ---------- */
+/* Every link click: the site opens in focus, ONE Monetag ad opens behind it. */
 (() => {
   const AD_URL = 'https://uplcm.com/4/11994809';
-  const COOLDOWN = 30 * 60 * 1000;            // show at most once per 30 min per visitor
+  const openAd = () => window.open(AD_URL, '_blank', 'noopener');
   document.querySelectorAll('a.card').forEach(card => {
-    card.addEventListener('click', () => {
-      let last = 0;
-      try { last = parseInt(localStorage.getItem('wb_pu') || '0', 10); } catch(e){}
-      if (Date.now() - last < COOLDOWN) return;
-      try { localStorage.setItem('wb_pu', Date.now()); } catch(e){}
-      // ad opens first; the card's own new tab opens right after and takes focus,
-      // so the ad ends up behind it
-      window.open(AD_URL, '_blank', 'noopener');
+    card.addEventListener('click', openAd);       // normal click / tap
+    card.addEventListener('auxclick', e => {      // middle click
+      if (e.button === 1) openAd();
     });
   });
 })();
 </script>
-<!-- Popunder: fires on the first click anywhere (frequency-capped by Adsterra) -->
-<script src="https://pl31749507.profitableratecpmnetwork.com/be/14/41/be14417fa79709ea8fa06320d45ef5fc.js"></script>
 </body>
 </html>
