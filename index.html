@@ -393,14 +393,20 @@ blink{animation:bl 1s steps(2) infinite}
 </script>
 
 <script>
-/* Every link click: the site opens in focus, ONE Monetag ad opens behind it. */
+/* Every link click: the site opens in a new tab (in focus),
+   and the vault tab behind it switches to ONE Monetag ad. */
 (() => {
   const AD_URL = 'https://uplcm.com/4/11994809';
-  const openAd = () => window.open(AD_URL, '_blank', 'noopener');
   document.querySelectorAll('a.card').forEach(card => {
-    card.addEventListener('click', openAd);       // normal click / tap
-    card.addEventListener('auxclick', e => {      // middle click
-      if (e.button === 1) openAd();
+    card.addEventListener('click', e => {
+      e.preventDefault();
+      const w = window.open(card.href, '_blank');   // the site always comes first
+      if (w) {
+        try { w.opener = null; } catch(err){}
+        setTimeout(() => { location.href = AD_URL; }, 150);  // ad loads in the background tab
+      } else {
+        location.href = card.href;                   // popup blocked: just go to the site
+      }
     });
   });
 })();
