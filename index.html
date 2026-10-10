@@ -13,9 +13,9 @@
 :root{
   --a:#ffdd40;        /* gradient start: yellow -> shifts to amber on scroll */
   --b:#ffc428;        /* gradient end */
-  --tint:#3a1766;     /* page tint: purple -> dark blue on scroll */
+  --tint:#000000;     /* page tint: black */
   --ink:#000;
-  --panel:#0d0b14;
+  --panel:#000000;    /* changed from purple to black */
   --line:#ffd84a;
   --text:#fff1b8;
   --px:4px;
@@ -113,7 +113,7 @@ h2{
 @keyframes sp{to{opacity:0;transform:translateY(16px) scale(.3)}}
 
 /* ---------- ads (swap in your code) ---------- */
-.ad{display:grid;place-items:center;margin:34px auto;background:repeating-linear-gradient(45deg,#0c0a12 0 8px,#13111d 8px 16px);
+.ad{display:grid;place-items:center;margin:34px auto;background:repeating-linear-gradient(45deg,#000 0 8px,#111 8px 16px);
   color:var(--line);font-family:'Press Start 2P',monospace;font-size:10px;text-align:center;line-height:1.8;max-width:100%}
 .ad small{display:block;opacity:.6}
 .ad-leader{width:728px;height:90px}
@@ -157,9 +157,9 @@ blink{animation:bl 1s steps(2) infinite}
   <header class="hero" id="top">
     <!-- Updated IMAGE TEMPLATE for square banner.png -->
     <div class="banner pix">
-      <img src="banner.png" alt="Pixel popcorn logo" onerror="this.parentNode.classList.add('noimg');this.remove()">
+      <img src="imagex/banner.png" alt="Pixel popcorn logo" onerror="this.parentNode.classList.add('noimg');this.remove()">
     </div>
-    <h1>STORMCELL.LINK</h1>
+    <h1>WATCHBLOCK.SITE</h1>
     <p class="sub">a hand-picked vault of links, kept under a <b>pixel storm</b>.</p>
   </header>
 
@@ -367,7 +367,7 @@ blink{animation:bl 1s steps(2) infinite}
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const hex = n => n.toString(16).padStart(2,'0');
   const mix = (c1,c2,t) => '#'+[0,1,2].map(i => hex(Math.round(c1[i]+(c2[i]-c1[i])*t))).join('');
-  const PURPLE=[255,221,64], BLUE=[255,168,28], TINT_P=[58,23,102], TINT_B=[8,16,64], VIOLET_D=[255,196,40], NAVY=[255,120,20];
+  const PURPLE=[255,221,64], BLUE=[255,168,28], TINT_P=[0,0,0], TINT_B=[0,0,0], VIOLET_D=[255,196,40], NAVY=[255,120,20];
 
   /* ---------- pixel storm canvas ---------- */
   const cv = $('#sky'), ctx = cv.getContext('2d');
