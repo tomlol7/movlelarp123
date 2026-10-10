@@ -353,18 +353,18 @@ blink{animation:bl 1s steps(2) infinite}
     </a>
   </div>
 
-  <!-- AD SLOT 3 (728x90) -->
+  <!-- AD SLOT 3 (728x90 - Uses your second unique banner key) -->
   <div class="ad ad-leader" id="ad-bottom">
     <script>
       atOptions = {
-        'key' : '7912c21a587717be131d8252eb539977',
+        'key' : 'YOUR_SECOND_728X90_KEY',
         'format' : 'iframe',
         'height' : 90,
         'width' : 728,
         'params' : {}
       };
     </script>
-    <script src="https://www.highrevenueformat.com/7912c21a587717be131d8252eb539977/invoke.js"></script>
+    <script src="https://www.highrevenueformat.com/YOUR_SECOND_728X90_KEY/invoke.js"></script>
   </div>
 
   <footer>
@@ -384,7 +384,7 @@ blink{animation:bl 1s steps(2) infinite}
 
   /* ---------- pixel storm canvas ---------- */
   const cv = $('#sky'), ctx = cv.getContext('2d');
-  const W = 240, H = 135, TW = 480;            // low-res on purpose = chunky pixels
+  const W = 240, H = 135, TW = 480;             // low-res on purpose = chunky pixels
   cv.width = W; cv.height = H;
 
   function rng(seed){return () => (seed = (seed*1664525 + 1013904223) >>> 0) / 4294967296}
@@ -403,7 +403,7 @@ blink{animation:bl 1s steps(2) infinite}
     const tc = t.getContext('2d'), img = tc.createImageData(TW,H);
     for(let y=0;y<H;y++) for(let x=0;x<TW;x++){
       let v = 0; grids.forEach((g,k) => v += sample(g,x,y)*wts[k]);
-      v += bias(y/H);                           // more cloud mass up top
+      v += bias(y/H);                            // more cloud mass up top
       const lvl = v<.5 ? -1 : v<.58 ? 0 : v<.66 ? 1 : 2;
       if(lvl<0) continue;
       const c = pal[lvl], i = (y*TW+x)*4;
@@ -418,7 +418,7 @@ blink{animation:bl 1s steps(2) infinite}
   const flashEl = $('#flash');
 
   function frame(ts){
-    if(ts - last > 55){                          // ~18fps = retro stutter
+    if(ts - last > 55){                         // ~18fps = retro stutter
       last = ts;
       off1 = (off1 + .25) % TW; off2 = (off2 + .6) % TW;
       const g = ctx.createLinearGradient(0,0,0,H);
