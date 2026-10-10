@@ -6,124 +6,65 @@
 <title>watchblock.site ~ a movie link vault</title>
 <meta name="description" content="A hand-picked directory of working movie streaming links.">
 <meta name="theme-color" content="#000000" id="themeColor">
-<!-- Favicon / Tab Logo -->
 <link rel="icon" type="image/png" href="imagex/banner.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
 <style>
-:root{
-  --a:#ffdd40;
-  --b:#ffc428;
-  --tint:#000000;
-  --ink:#000;
-  --panel:#000000;
-  --line:#ffd84a;
-  --text:#fff1b8;
-  --px:4px;
-}
+:root{--a:#ffdd40;--b:#ffc428;--tint:#000000;--ink:#000;--panel:#000000;--line:#ffd84a;--text:#fff1b8;--px:4px;}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{
-  font-family:'VT323','Courier New',monospace;
-  font-size:22px;line-height:1.25;color:var(--text);
-  background:var(--ink);min-height:100vh;
-  cursor:crosshair;
-  overflow-x: hidden; /* Prevents side-scrolling on mobile */
-}
+body{font-family:'VT323','Courier New',monospace;font-size:22px;line-height:1.25;color:var(--text);background:var(--ink);min-height:100vh;cursor:crosshair;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
-
-/* ---------- background: pixel storm ---------- */
 #sky,#tintlayer,#scan{position:fixed;inset:0;width:100%;height:100%;z-index:-3}
-#sky{image-rendering:pixelated;image-rendering:crisp-edges;object-fit:cover} /* object-fit fixes mobile stretching */
+#sky{image-rendering:pixelated;image-rendering:crisp-edges;object-fit:cover}
 #tintlayer{z-index:-2;background:var(--tint);mix-blend-mode:multiply;opacity:0}
 #flash{position:fixed;inset:0;z-index:-1;background:#d8d8e0;opacity:0;pointer-events:none;mix-blend-mode:screen}
-#scan{z-index:50;pointer-events:none;
-  background:repeating-linear-gradient(to bottom,rgba(0,0,0,.18) 0 1px,transparent 1px 3px);opacity:.5}
-
-/* ---------- layout ---------- */
+#scan{z-index:50;pointer-events:none;background:repeating-linear-gradient(to bottom,rgba(0,0,0,.18) 0 1px,transparent 1px 3px);opacity:.5}
 .wrap{max-width:1000px;margin:0 auto;padding:24px 16px 80px}
 .pix{border:var(--px) solid var(--line);box-shadow:var(--px) var(--px) 0 #000,inset 0 0 0 var(--px) rgba(0,0,0,.35);background:var(--panel)}
-
-/* hero */
-.hero{text-align:center;padding:28px 12px 8px;margin-top:20px;}
-
-/* Updated banner classes for square logo */
+.hero{text-align:center;padding:28px 12px 8px;margin-top:20px}
 .banner{display:block;margin:0 auto 22px;max-width:100%;width:128px;aspect-ratio:1/1;position:relative;overflow:hidden}
 .banner img{width:100%;height:100%;object-fit:cover;image-rendering:pixelated;display:block}
 .banner.noimg{background:conic-gradient(#1e1e1e 25%,#141414 0 50%,#1e1e1e 0 75%,#141414 0) 0 0/16px 16px;display:grid;place-items:center}
 .banner.noimg::after{content:"imagex/banner.png 128x128";font-family:'Press Start 2P',monospace;font-size:11px;color:var(--line)}
-
-h1{
-  font-family:'Press Start 2P',monospace;font-weight:400;
-  font-size:clamp(16px,4.5vw,46px);line-height:1.4;letter-spacing:2px;
-  word-break: break-word; /* Fixes title stretching on small mobile screens */
-  background:linear-gradient(90deg,var(--a),var(--b));
-  -webkit-background-clip:text;background-clip:text;color:transparent;
-  filter:drop-shadow(4px 4px 0 #000);
-  animation:bob 3s steps(4) infinite;
-}
+h1{font-family:'Press Start 2P',monospace;font-weight:400;font-size:clamp(16px,4.5vw,46px);line-height:1.4;letter-spacing:2px;word-break:break-word;background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(4px 4px 0 #000);animation:bob 3s steps(4) infinite}
 @keyframes bob{50%{transform:translateY(-4px)}}
 .sub{margin-top:18px;font-size:26px;color:var(--line)}
 .sub b{font-weight:400;background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
-
 .ticker{overflow:hidden;white-space:nowrap;margin:26px 0 8px;padding:6px 0;font-size:24px}
 .ticker span{display:inline-block;padding-left:100%;animation:tick 28s linear infinite}
 @keyframes tick{to{transform:translateX(-100%)}}
-
-/* ---------- link cards (retro windows) ---------- */
-.grid{margin-top:28px;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%, 260px), 1fr));gap:22px}
+.grid{margin-top:28px;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));gap:22px}
 .card{display:block;transition:transform .12s steps(3),box-shadow .12s steps(3)}
 .card .bar{display:flex;align-items:center;gap:6px;padding:4px 8px;background:linear-gradient(90deg,var(--a),var(--b));color:var(--ink);font-size:20px}
 .card .bar i{width:10px;height:10px;background:var(--ink);display:block}
 .card .bar em{font-style:normal;margin-left:auto;opacity:.7}
-.thumb{position:relative;aspect-ratio:4/3;background:#0a0a0a;overflow:hidden;border-bottom:var(--px) solid var(--line)}
-.thumb img{width:100%;height:100%;object-fit:cover;image-rendering:pixelated;display:block;transition:transform .2s steps(4),filter .2s}
-/* placeholder when image file is missing */
-.thumb.noimg{background:
-  conic-gradient(#1e1e1e 25%,#141414 0 50%,#1e1e1e 0 75%,#141414 0) 0 0/16px 16px}
-.thumb.noimg::after{content:attr(data-size);position:absolute;inset:0;display:grid;place-items:center;font-family:'Press Start 2P',monospace;font-size:11px;color:var(--line);text-align:center;padding:8px}
-.thumb.noimg img{display:none}
 .card .body{padding:10px 12px 14px}
 .card h3{font-family:'Press Start 2P',monospace;font-weight:400;font-size:12px;line-height:1.5;margin-bottom:8px;word-break:break-all}
 .card p{color:#d9cc8a;font-size:20px}
 .card:hover,.card:focus-visible{transform:translate(-4px,-4px);box-shadow:calc(var(--px)*2) calc(var(--px)*2) 0 var(--a),0 0 28px rgba(255,210,60,.5);outline:none}
-.card:hover .thumb img,.card:focus-visible .thumb img{transform:scale(1.12);filter:saturate(1.4) hue-rotate(-12deg)}
 .card:active{transform:translate(0,0);box-shadow:var(--px) var(--px) 0 #000}
-
-/* hover tooltip that follows the cursor */
-#tip{
-  position:fixed;z-index:100;left:0;top:0;max-width:260px;pointer-events:none;
-  padding:8px 10px;font-size:21px;color:var(--ink);
-  background:linear-gradient(90deg,var(--a),var(--b));
-  border:var(--px) solid #fff;box-shadow:var(--px) var(--px) 0 #000;
-  opacity:0;transform:translate(14px,18px);
-}
+#tip{position:fixed;z-index:100;left:0;top:0;max-width:260px;pointer-events:none;padding:8px 10px;font-size:21px;color:var(--ink);background:linear-gradient(90deg,var(--a),var(--b));border:var(--px) solid #fff;box-shadow:var(--px) var(--px) 0 #000;opacity:0;transform:translate(14px,18px)}
 #tip.on{opacity:1}
-
-/* sparkle trail */
 .sp{position:fixed;width:6px;height:6px;pointer-events:none;z-index:99;background:var(--line);animation:sp .7s steps(5) forwards}
 @keyframes sp{to{opacity:0;transform:translateY(16px) scale(.3)}}
 
 /* ---------- ads ---------- */
-.ad{display:grid;place-items:center;margin:34px auto;max-width:100%;overflow:hidden;}
-.ad-leader{width:100%;min-height:90px;display:flex;justify-content:center}
-.ad-rect{width:100%;min-height:250px;display:flex;justify-content:center}
+.ad{margin:34px auto;max-width:100%;overflow:hidden;display:flex;justify-content:center;align-items:center}
+.ad-leader{width:100%;min-height:90px}
+.ad-rect{width:100%;min-height:250px}
+.ad.empty{display:none}               /* collapses the slot if no ad was served */
 
 footer{text-align:center;margin-top:50px;padding:16px;font-size:21px;color:#b3a45a}
 .counter{display:inline-block;font-family:'Press Start 2P',monospace;font-size:12px;padding:6px 8px;background:#000;color:var(--a);letter-spacing:3px;border:2px inset var(--line)}
 blink{animation:bl 1s steps(2) infinite}
 @keyframes bl{50%{opacity:0}}
-
 @media (max-width:760px){
   body{font-size:20px}
-  /* Scale down leaderboards cleanly on small screens */
-  .ad-leader iframe { max-width: 100%; transform: scale(0.9); transform-origin: center; }
+  .ad-leader{display:none}            /* 728px banner can't fit on phones */
 }
-@media (prefers-reduced-motion:reduce){
-  *{animation:none!important;transition:none!important}
-  #flash{display:none}
-}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}#flash{display:none}}
 </style>
 </head>
 <body>
@@ -148,18 +89,11 @@ blink{animation:bl 1s steps(2) infinite}
   <!-- AD SLOT 1 (728x90) -->
   <div class="ad ad-leader" id="ad-top">
     <script>
-      atOptions = {
-        'key' : '7912c21a587717be131d8252eb539977',
-        'format' : 'iframe',
-        'height' : 90,
-        'width' : 728,
-        'params' : {}
-      };
+      atOptions = {'key':'7912c21a587717be131d8252eb539977','format':'iframe','height':90,'width':728,'params':{}};
     </script>
     <script src="https://www.highrevenueformat.com/7912c21a587717be131d8252eb539977/invoke.js"></script>
   </div>
 
-  <!-- ========== SECTION 1 ========== -->
   <div class="grid">
     <a class="card pix" href="https://soap2dayhd.net/" target="_blank" rel="noopener" data-desc="Visit soap2dayhd.net">
       <div class="bar"><i></i><i></i><i></i><em>01.exe</em></div>
@@ -219,7 +153,6 @@ blink{animation:bl 1s steps(2) infinite}
     </a>
   </div>
 
-  <!-- ========== SECTION 2 ========== -->
   <div class="grid">
     <a class="card pix" href="https://popcornmovies.ac" target="_blank" rel="noopener" data-desc="Visit popcornmovies.ac">
       <div class="bar"><i></i><i></i><i></i><em>15.exe</em></div>
@@ -282,18 +215,11 @@ blink{animation:bl 1s steps(2) infinite}
   <!-- AD SLOT 2 (300x250) -->
   <div class="ad ad-rect" id="ad-mid">
     <script>
-      atOptions = {
-        'key' : 'df04affbec9190a8d1212e3272dfbe81',
-        'format' : 'iframe',
-        'height' : 250,
-        'width' : 300,
-        'params' : {}
-      };
+      atOptions = {'key':'df04affbec9190a8d1212e3272dfbe81','format':'iframe','height':250,'width':300,'params':{}};
     </script>
     <script src="https://www.highrevenueformat.com/df04affbec9190a8d1212e3272dfbe81/invoke.js"></script>
   </div>
 
-  <!-- ========== SECTION 3 ========== -->
   <div class="grid">
     <a class="card pix" href="https://officialmoviebox.com" target="_blank" rel="noopener" data-desc="Visit officialmoviebox.com">
       <div class="bar"><i></i><i></i><i></i><em>29.exe</em></div>
@@ -353,20 +279,6 @@ blink{animation:bl 1s steps(2) infinite}
     </a>
   </div>
 
-  <!-- AD SLOT 3 (728x90 - Uses your second unique banner key) -->
-  <div class="ad ad-leader" id="ad-bottom">
-    <script>
-      atOptions = {
-        'key' : 'YOUR_SECOND_728X90_KEY',
-        'format' : 'iframe',
-        'height' : 90,
-        'width' : 728,
-        'params' : {}
-      };
-    </script>
-    <script src="https://www.highrevenueformat.com/YOUR_SECOND_728X90_KEY/invoke.js"></script>
-  </div>
-
   <footer>
     <p>you are visitor <span class="counter" id="count">000421</span></p>
     <p style="margin-top:12px"><blink>*</blink> made with clouds and a little thunder <blink>*</blink></p>
@@ -375,16 +287,14 @@ blink{animation:bl 1s steps(2) infinite}
 
 <script>
 (() => {
-  /* ---------- helpers ---------- */
   const $ = s => document.querySelector(s);
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const hex = n => n.toString(16).padStart(2,'0');
   const mix = (c1,c2,t) => '#'+[0,1,2].map(i => hex(Math.round(c1[i]+(c2[i]-c1[i])*t))).join('');
   const PURPLE=[255,221,64], BLUE=[255,168,28], TINT_P=[0,0,0], TINT_B=[0,0,0], VIOLET_D=[255,196,40], NAVY=[255,120,20];
 
-  /* ---------- pixel storm canvas ---------- */
   const cv = $('#sky'), ctx = cv.getContext('2d');
-  const W = 240, H = 135, TW = 480;             // low-res on purpose = chunky pixels
+  const W = 240, H = 135, TW = 480;
   cv.width = W; cv.height = H;
 
   function rng(seed){return () => (seed = (seed*1664525 + 1013904223) >>> 0) / 4294967296}
@@ -403,7 +313,7 @@ blink{animation:bl 1s steps(2) infinite}
     const tc = t.getContext('2d'), img = tc.createImageData(TW,H);
     for(let y=0;y<H;y++) for(let x=0;x<TW;x++){
       let v = 0; grids.forEach((g,k) => v += sample(g,x,y)*wts[k]);
-      v += bias(y/H);                            // more cloud mass up top
+      v += bias(y/H);
       const lvl = v<.5 ? -1 : v<.58 ? 0 : v<.66 ? 1 : 2;
       if(lvl<0) continue;
       const c = pal[lvl], i = (y*TW+x)*4;
@@ -418,15 +328,13 @@ blink{animation:bl 1s steps(2) infinite}
   const flashEl = $('#flash');
 
   function frame(ts){
-    if(ts - last > 55){                         // ~18fps = retro stutter
+    if(ts - last > 55){
       last = ts;
       off1 = (off1 + .25) % TW; off2 = (off2 + .6) % TW;
       const g = ctx.createLinearGradient(0,0,0,H);
       g.addColorStop(0,'#000'); g.addColorStop(1,'#09090b');
       ctx.fillStyle = g; ctx.fillRect(0,0,W,H);
-      [[far,off1],[near,off2]].forEach(([t,o]) => {
-        ctx.drawImage(t, -o, 0); ctx.drawImage(t, TW-o, 0);
-      });
+      [[far,off1],[near,off2]].forEach(([t,o]) => { ctx.drawImage(t, -o, 0); ctx.drawImage(t, TW-o, 0); });
       if(flash>0){ flash--; flashEl.style.opacity = flash%2 ? .35 : .1; if(!flash) flashEl.style.opacity = 0; }
       else if(!reduce && Math.random() < .0025){ flash = 6; }
     }
@@ -435,20 +343,17 @@ blink{animation:bl 1s steps(2) infinite}
   requestAnimationFrame(frame);
   if(reduce){ frame(100); }
 
-  /* ---------- scroll: purple -> dark blue ---------- */
   const root = document.documentElement, meta = $('#themeColor');
   function onScroll(){
     const max = Math.max(1, root.scrollHeight - innerHeight);
     const t = Math.min(1, Math.max(0, scrollY / max));
     root.style.setProperty('--a', mix(PURPLE, BLUE, t));
     root.style.setProperty('--b', mix(VIOLET_D, NAVY, t));
-    const tint = mix(TINT_P, TINT_B, t);
-    root.style.setProperty('--tint', tint);
+    root.style.setProperty('--tint', mix(TINT_P, TINT_B, t));
     meta.setAttribute('content', '#000000');
   }
   addEventListener('scroll', onScroll, {passive:true}); addEventListener('resize', onScroll); onScroll();
 
-  /* ---------- hover tooltip ---------- */
   const tip = $('#tip');
   document.querySelectorAll('[data-desc]').forEach(el => {
     el.addEventListener('mouseenter', () => { tip.textContent = el.dataset.desc; tip.classList.add('on'); });
@@ -466,22 +371,23 @@ blink{animation:bl 1s steps(2) infinite}
     }
   });
 
-  /* ---------- missing thumbnails -> pixel placeholder ---------- */
-  document.querySelectorAll('.thumb img').forEach(img => {
-    const mark = () => img.parentNode.classList.add('noimg');
-    img.addEventListener('error', mark);
-    if(img.complete && !img.naturalWidth) mark();
-  });
-  document.querySelectorAll('.banner img').forEach(img => img.addEventListener('error', () => {}));
-
-  /* ---------- fake-but-fun visitor counter (local only) ---------- */
   try {
     const n = (parseInt(localStorage.getItem('sc_v')||'420',10) + 1);
     localStorage.setItem('sc_v', n); $('#count').textContent = String(n).padStart(6,'0');
   } catch(e){}
+
+  /* ---------- ad diagnostics: collapse empty slots + log why ---------- */
+  addEventListener('load', () => setTimeout(() => {
+    document.querySelectorAll('.ad').forEach(el => {
+      if(!el.querySelector('iframe')){
+        el.classList.add('empty');
+        console.warn('[ads] no iframe in #' + el.id + ' -> script blocked (ERR_BLOCKED_BY_CLIENT) or no fill. Check the Network tab.');
+      }
+    });
+  }, 4000));
 })();
 </script>
-<!-- Popunder Script attached before body close -->
+<!-- Popunder: fires on the first click anywhere (frequency-capped by Adsterra) -->
 <script src="https://pl31749507.profitableratecpmnetwork.com/be/14/41/be14417fa79709ea8fa06320d45ef5fc.js"></script>
 </body>
 </html>
